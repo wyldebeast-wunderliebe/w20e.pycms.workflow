@@ -6,7 +6,10 @@ def add_wf(event):
 
     if event['renderer_name'].endswith("action_workflow.pt"):
 
-        event['wf'] = Workflow(event['context'], event['request'])
+        try:
+            event['wf'] = Workflow(event['context'], event['request'])
+        except:
+            event['wf'] = None
 
 
 class Workflow(object):
@@ -19,14 +22,15 @@ class Workflow(object):
         iface = implementedBy(self.context.__class__).flattened().next()
         self.wf = get_workflow(iface, 'security')
 
+        assert(self.wf is not None)
+
     @property
     def state(self):
-        return self.wf and self.wf.state_of(self.context) or "-"
+        return self.wf.state_of(self.context)
 
     @property
     def transitions(self):
-        return self.wf and self.wf.get_transitions(self.context,
-                                                   self.request) or []
+        return self.wf.get_transitions(self.context, self.request)
 
     def trans_to(self, to_state):
 

@@ -1,0 +1,32 @@
+<configure xmlns="http://pylonshq.com/pyramid"
+           xmlns:pycms="http://w20e.com/pycms"
+           >
+
+  <include package="pyramid_zcml" />
+  <include file="workflow/simple.xml" />
+
+  <pycms:action
+     name="state"
+     label="State"
+     target="#"
+     category="content"
+     permission="admin"
+     template="w20e.pycms:templates/action_workflow.pt"
+     />
+
+  <view
+    context="w20e.hitman.models.base.IContent"
+    view=".views.workflow.TransView"
+    renderer="templates/action_workflow.pt"
+    name="trans"
+    />      
+
+  <subscriber
+      for="pyramid.events.BeforeRender"
+      handler=".workflow.add_wf"
+    />
+
+  <pycms:js jsfile="./static/wf.js" 
+            jstarget="manage"/>
+
+</configure>

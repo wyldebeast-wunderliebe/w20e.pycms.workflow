@@ -1,0 +1,16 @@
+<div class="btn-group" tal:condition="wf" id="wf_action">
+  <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+    <i tal:condition="action.icon" class="${action.icon}"></i>
+    ${action.label}: ${wf.state}
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <tal:repeat repeat="trans wf.transitions">
+      <li>
+        <a href="javascript: pycms.workflow.trans('${trans.to_state}')">
+          ${trans.to_state}
+        </a>
+      </li>
+    </tal:repeat>
+  </ul>
+</div>

@@ -3,7 +3,7 @@
            >
 
   <include package="pyramid_zcml" />
-  <include file="workflow/simple.xml" />
+  <include file="workflow/simple.zcml" />
 
   <pycms:action
      name="state"

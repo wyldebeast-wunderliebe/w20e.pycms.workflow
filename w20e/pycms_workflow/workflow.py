@@ -4,7 +4,7 @@ from repoze.workflow import get_workflow
 
 def add_wf(event):
 
-    if event['renderer_name'] == 'w20e.pycms:templates/action_workflow.pt':
+    if event['renderer_name'].endswith("action_workflow.pt"):
 
         event['wf'] = Workflow(event['context'], event['request'])
 

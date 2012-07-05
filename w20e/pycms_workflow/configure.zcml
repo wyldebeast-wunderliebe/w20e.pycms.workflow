@@ -11,7 +11,7 @@
      target="#"
      category="content"
      permission="admin"
-     template="w20e.pycms:templates/action_workflow.pt"
+     template="w20e.pycms_workflow:templates/action_workflow.pt"
      />
 
   <view

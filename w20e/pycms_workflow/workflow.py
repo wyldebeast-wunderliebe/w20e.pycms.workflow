@@ -1,4 +1,5 @@
 from repoze.workflow import get_workflow
+from w20e.hitman.events import ContentChanged
 
 
 def add_wf(event):
@@ -35,3 +36,4 @@ class Workflow(object):
         """ Transition to state """
 
         self.wf.transition_to_state(self.context, self.request, to_state)
+        self.request.registry.notify(ContentChanged(self.context))

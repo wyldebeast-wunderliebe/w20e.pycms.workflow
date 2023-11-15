@@ -1,4 +1,4 @@
-from builtins import object
+
 from repoze.workflow import get_workflow
 from w20e.hitman.events import ContentChanged
 

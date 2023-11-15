@@ -1,4 +1,4 @@
-from builtins import object
+
 from w20e.pycms_workflow.workflow import Workflow
 from w20e.pycms.actions import IActions
 
